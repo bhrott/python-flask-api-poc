@@ -1,17 +1,17 @@
 from pymongo import MongoClient
-from helpers.config import get_current_config
+from helpers.config import config
 
 
-config = get_current_config()
+_config = config.get_current()
 
 
 class Database:
     _mongo_client = None
-    _default_db = config.DB_DATABASE_DEFAULT
+    _default_db = _config.DB_DATABASE_DEFAULT
 
     def __init__(self):
         self._mongo_client = MongoClient(
-            config.DB_CONNECTION
+            _config.DB_CONNECTION
         )
 
     def set_default_db(self, db_name):
@@ -31,6 +31,10 @@ class Database:
         return db[collection_name]
 
 
-database = Database()
+_database = Database()
+
+
+def get_current():
+    return _database
 
 

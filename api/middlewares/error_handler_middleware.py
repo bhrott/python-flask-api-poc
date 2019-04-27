@@ -1,5 +1,5 @@
 
-def init_error_handler(app):
+def init(app):
     """
     Initialize the default error handling for the api.
     All the errors will be tracked by this middleware

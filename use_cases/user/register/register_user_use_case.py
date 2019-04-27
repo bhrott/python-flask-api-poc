@@ -1,7 +1,7 @@
-from helpers.translation import get_current_translation
+from helpers.translation import translation
 from use_cases import UseCase
-from entities import User
-from helpers.models import InvalidDataError
+from entities.user import User
+from helpers.models.error import InvalidDataError
 
 
 class RegisterUserUseCase(UseCase):
@@ -19,7 +19,7 @@ class RegisterUserUseCase(UseCase):
 
         if db_user is not None:
             raise InvalidDataError(
-                get_current_translation().EXCEPTION_USER_ALREADY_EXISTS
+               translation.get_current().EXCEPTION_USER_ALREADY_EXISTS
             )
 
         user = User()

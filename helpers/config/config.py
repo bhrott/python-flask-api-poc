@@ -15,6 +15,6 @@ class ConfigProd(Config):
     pass
 
 
-def get_current_config():
+def get_current():
     return ConfigDev
 

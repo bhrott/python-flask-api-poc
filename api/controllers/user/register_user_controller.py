@@ -2,7 +2,7 @@ from flask import request, jsonify
 from use_cases.user.register import RegisterUserUseCase
 
 
-def init_user_register_ctrl(app):
+def init(app):
     @app.route('/register', methods=['POST'])
     def user_register_ctrl():
         data = request.get_json()
