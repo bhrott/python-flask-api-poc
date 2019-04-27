@@ -10,3 +10,7 @@ class Email:
             return False
 
         return True
+
+
+def register_module(injector):
+    injector.singleton('email_model', lambda _ : Email)

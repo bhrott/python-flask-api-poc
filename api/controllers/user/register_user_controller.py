@@ -1,22 +1,22 @@
 from flask import request, jsonify
-from use_cases.user.register import RegisterUserUseCase
 
 
-def init_user_register_ctrl(app):
+def register_module(injector):
+    app = injector.resolve('app')
+
     @app.route('/register', methods=['POST'])
     def user_register_ctrl():
         data = request.get_json()
 
-        register_user = RegisterUserUseCase(
+        register_user = injector.resolve('register_user_use_case')
+
+        registered = register_user(
             email=data['email'],
             password=data['password']
         )
-
-        registered = register_user.execute()
 
         return jsonify({
             'registered': {
                 'id': registered.id
             }
         }), 201
-

@@ -1,1 +1,0 @@
-from .error_handler_middleware import init_error_handler

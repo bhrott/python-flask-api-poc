@@ -15,6 +15,6 @@ class ConfigProd(Config):
     pass
 
 
-def get_current_config():
-    return ConfigDev
+def register_module(injector):
+    injector.singleton('config', lambda _ : Config)
 

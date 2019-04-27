@@ -20,3 +20,9 @@ class InvalidDataError(Error):
 class UnauthorizedError(Error):
     def __init__(self, message, data={}):
         Error.__init__(self, message=message, code=401, data=data)
+
+
+def register_module(injector):
+    injector.singleton('invalid_data_error_model', lambda _ : InvalidDataError)
+    injector.singleton('unauthorized_error_model', lambda _: UnauthorizedError)
+

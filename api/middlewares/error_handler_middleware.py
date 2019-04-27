@@ -1,10 +1,12 @@
 
-def init_error_handler(app):
+def register_module(injector):
     """
     Initialize the default error handling for the api.
     All the errors will be tracked by this middleware
     :param app: the Flask app instance
     """
+
+    app = injector.resolve('app')
 
     @app.errorhandler(Exception)
     def handle_error(e):

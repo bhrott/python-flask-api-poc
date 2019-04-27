@@ -1,21 +1,20 @@
 from pymongo import MongoClient
-from helpers.config import get_current_config
-
-
-config = get_current_config()
 
 
 class Database:
+    _config = None
     _mongo_client = None
-    _default_db = config.DB_DATABASE_DEFAULT
+    _default_db_name = None
 
-    def __init__(self):
+    def __init__(self, injector):
+        self._config = injector.resolve('config')
         self._mongo_client = MongoClient(
-            config.DB_CONNECTION
+            self._config.DB_CONNECTION
         )
+        self._default_db_name = self._config.DB_DATABASE_DEFAULT
 
     def set_default_db(self, db_name):
-        self._default_db = db_name
+        self._default_db_name = db_name
 
     def get_client(self):
         return self._mongo_client
@@ -24,13 +23,14 @@ class Database:
         return self._mongo_client[db_name]
 
     def get_collection(self, collection_name, db_name=None):
-        selected_db_name = db_name if db_name is not None else self._default_db
+        selected_db_name = db_name if db_name is not None else self._default_db_name
 
         db = self.get_db(selected_db_name)
 
         return db[collection_name]
 
 
-database = Database()
+def register_module(injector):
+    injector.singleton('database', Database)
 
 
