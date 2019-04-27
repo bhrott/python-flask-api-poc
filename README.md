@@ -14,6 +14,14 @@ JWT_SECRET=your-secret-hash-here
 ENV_NAME=local
 ```
 
+### Installing the dependencies
+
+In the terminal, run:
+
+```
+pip install -r requirements.txt
+```
+
 ### Running the database
 
 This project uses mongodb as database. If you don't have mongodb installed in your machine, you can install or
