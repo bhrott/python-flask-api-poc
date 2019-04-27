@@ -12,4 +12,14 @@ Create a file named `.env` in the root of the project with this content:
 DB_CONNECTION=mongodb://localhost:27017/
 ```
 
-Done =)
+### Running the database
+
+This project uses mongodb as database. If you don't have mongodb installed in your machine, you can install or
+use with the docker compose.
+
+- Instaling local:
+    - Follow this tutorial: https://docs.mongodb.com/manual/administration/install-community/
+- Running from docker
+    - Install docker using this tutorial: https://www.docker.com/products/docker-desktop
+    - After install, run the docker and wait until is running.
+    - Run the command `make run-db` in the root folder.
