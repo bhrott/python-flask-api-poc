@@ -3,8 +3,8 @@ from helpers.jwt import jwt
 from helpers.models.error import UnauthorizedError
 
 
-def require_logged_user_middleware(func):
-    def require_logged_user_middleware_wrapper():
+def require_logged_user(func):
+    def require_logged_user_wrapper():
         authorization = request.headers.get('authorization')
 
         if not authorization:
@@ -23,4 +23,4 @@ def require_logged_user_middleware(func):
 
         return func()
 
-    return require_logged_user_middleware_wrapper
+    return require_logged_user_wrapper

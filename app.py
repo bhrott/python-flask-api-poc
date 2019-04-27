@@ -2,18 +2,19 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 from flask import Flask
-from api.controllers.user import register_user_controller, user_login_controller, get_my_profile_controller
-from api.middlewares import error_handler_middleware, logger_middleware
+from api.controllers.init_controllers import init_controllers
+from api.middlewares.init_middlewares import init_middlewares
+from helpers.config import config
 
+_config = config.get_current()
 
 app = Flask(__name__)
 
-error_handler_middleware.init(app)
-logger_middleware.init(app)
+init_middlewares(app)
+init_controllers(app)
 
-register_user_controller.init(app)
-user_login_controller.init(app)
-get_my_profile_controller.init(app)
-
+#
+# run
+#
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=_config.DEBUG)
