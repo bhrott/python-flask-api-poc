@@ -1,5 +1,8 @@
+import os
+
+
 class Config:
-    DB_CONNECTION = 'mongodb://localhost:27017/'
+    DB_CONNECTION = os.getenv('DB_CONNECTION')
     DB_DATABASE_DEFAULT = 'python-api'
 
 
