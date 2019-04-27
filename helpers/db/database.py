@@ -1,12 +1,18 @@
 from pymongo import MongoClient
+from helpers.config import get_current_config
+
+
+config = get_current_config()
 
 
 class Database:
     _mongo_client = None
-    _default_db = 'python-api'
+    _default_db = config.DB_DATABASE_DEFAULT
 
     def __init__(self):
-        self._mongo_client = MongoClient('mongodb://localhost:27017/')
+        self._mongo_client = MongoClient(
+            config.DB_CONNECTION
+        )
 
     def set_default_db(self, db_name):
         self._default_db = db_name
