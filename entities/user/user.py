@@ -1,7 +1,7 @@
 import pymongo
 
 from helpers.db import database
-from helpers.password import password_service
+from helpers.password import hash_password
 from ._db_to_user import map_db_result_to_user
 from ._validate_user import validate_user
 
@@ -26,7 +26,7 @@ class User:
 
         db_insert_result = db_collection.insert_one({
             'email': user.email,
-            'password': password_service.hash(user.password)
+            'password': hash_password(user.password)
         })
 
         user.id = str(db_insert_result.inserted_id)

@@ -1,6 +1,6 @@
 from helpers.models import Email, InvalidDataError
 from helpers.translation.translation_codes import TranslationCodes
-from helpers.password import password_service
+from helpers.password import validate_password_rules
 
 
 def validate_user(user):
@@ -11,7 +11,7 @@ def validate_user(user):
             message=TranslationCodes.EXCEPTION_REQUIRED_EMAIL
         )
 
-    password_validation = password_service.validate_rules(user.password)
+    password_validation = validate_password_rules(user.password)
 
     if password_validation.valid is False:
         raise InvalidDataError(
