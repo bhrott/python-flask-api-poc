@@ -10,6 +10,8 @@ Create a file named `.env` in the root of the project with this content:
 
 ```
 DB_CONNECTION=mongodb://localhost:27017/
+JWT_SECRET=your-secret-hash-here
+ENV_NAME=local
 ```
 
 ### Running the database

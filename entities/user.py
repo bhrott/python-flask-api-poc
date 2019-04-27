@@ -28,7 +28,7 @@ def _validate_user(user):
 
 
 def _map_db_result_to_user(db_result, user):
-    user.id = db_result['_id']
+    user.id = str(db_result['_id'])
     user.email = db_result['email']
     user.password = db_result['password']
 

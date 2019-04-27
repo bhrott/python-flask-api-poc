@@ -1,9 +1,9 @@
-from helpers.translation.translation_codes import TranslationCodes
+from helpers.translation import translation
 
 
 class Error(Exception):
     code = 500
-    message = TranslationCodes.EXCEPTION_INTERNAL_ERROR
+    message = translation.get_current().EXCEPTION_INTERNAL_ERROR
     data = {}
 
     def __init__(self, message, code=500, data={}):
@@ -18,5 +18,5 @@ class InvalidDataError(Error):
 
 
 class UnauthorizedError(Error):
-    def __init__(self, message, data={}):
-        Error.__init__(self, message=message, code=401, data=data)
+    def __init__(self, data={}):
+        Error.__init__(self, message=translation.get_current().EXCEPTION_UNAUTHORIZED, code=401, data=data)

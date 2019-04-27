@@ -4,6 +4,9 @@ import os
 class Config:
     DB_CONNECTION = os.getenv('DB_CONNECTION')
     DB_DATABASE_DEFAULT = 'python-api'
+    DEBUG = True
+    JWT_SECRET = os.getenv('JWT_SECRET')
+    ENV_NAME = os.getenv('ENV_NAME')
 
 
 class ConfigDev(Config):
@@ -11,13 +14,22 @@ class ConfigDev(Config):
 
 
 class ConfigQA(Config):
-    pass
+    DEBUG = False
 
 
 class ConfigProd(Config):
-    pass
+    DEBUG = False
+
+
+_configs = {
+    'local': Config,
+    'dev': ConfigDev,
+    'qa': ConfigQA,
+    'prod': ConfigProd
+}
 
 
 def get_current():
-    return ConfigDev
+    env_name = os.getenv('ENV_NAME')
+    return _configs[env_name]
 
