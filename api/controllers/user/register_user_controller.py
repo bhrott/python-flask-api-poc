@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from use_cases.user.register import RegisterUserUseCase
+from use_cases.user.register_user_use_case import register_user
 
 
 def init(app):
@@ -7,12 +7,10 @@ def init(app):
     def user_register_ctrl():
         data = request.get_json()
 
-        register_user = RegisterUserUseCase(
+        registered = register_user(
             email=data['email'],
             password=data['password']
         )
-
-        registered = register_user.execute()
 
         return jsonify({
             'registered': {
