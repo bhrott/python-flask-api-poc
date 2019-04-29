@@ -24,7 +24,6 @@ def login_user(email, password):
         'id': db_user.id,
         'email': db_user.email
     })
-
     return {
         'id': db_user.id,
         'email': db_user.email,

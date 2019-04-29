@@ -6,13 +6,11 @@ _config = config.get_current()
 
 
 class Database:
-    _mongo_client = None
-    _default_db = _config.DB_DATABASE_DEFAULT
-
     def __init__(self):
         self._mongo_client = MongoClient(
             _config.DB_CONNECTION
         )
+        self._default_db = _config.DB_DATABASE_DEFAULT
 
     def set_default_db(self, db_name):
         self._default_db = db_name

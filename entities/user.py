@@ -36,9 +36,10 @@ def _map_db_result_to_user(db_result, user):
 
 
 class User:
-    id = None
-    email = None
-    password = None
+    def __init__(self):
+        self.id = None
+        self.email = None
+        self.password = None
 
     @staticmethod
     def find_one(query):

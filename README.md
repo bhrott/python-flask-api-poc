@@ -33,3 +33,9 @@ use with the docker compose.
     - Install docker using this tutorial: https://www.docker.com/products/docker-desktop
     - After install, run the docker and wait until is running.
     - Run the command `make run-db` in the root folder.
+    
+    
+## Tech
+
+- [Flask](http://flask.pocoo.org/) for http api handling.
+- [Cerberus](http://docs.python-cerberus.org/en/stable/index.html) for schema validation.

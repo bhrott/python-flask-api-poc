@@ -2,13 +2,9 @@ from helpers.translation import translation
 
 
 class Error(Exception):
-    code = 500
-    message = translation.get_current().EXCEPTION_INTERNAL_ERROR
-    data = {}
-
     def __init__(self, message, code=500, data={}):
         self.code = code
-        self.message = message
+        self.message = message if message else translation.get_current().EXCEPTION_INTERNAL_ERROR
         self.data = data
 
 
@@ -20,3 +16,13 @@ class InvalidDataError(Error):
 class UnauthorizedError(Error):
     def __init__(self, data={}):
         Error.__init__(self, message=translation.get_current().EXCEPTION_UNAUTHORIZED, code=401, data=data)
+
+
+class BadRequestError(Error):
+    def __init__(self, message=None, data={}):
+        Error.__init__(
+            self,
+            message=message if message else translation.get_current().EXCEPTION_BAD_REQUEST,
+            code=400,
+            data=data
+        )

@@ -8,3 +8,4 @@ class EnUs(TranslationBase):
     EXCEPTION_PASSWORD_RULES_NOT_MATCH = 'The password is weak'
     EXCEPTION_INVALID_CREDENTIALS = 'Invalid credentials'
     EXCEPTION_UNAUTHORIZED = 'Unauthorized'
+    EXCEPTION_BAD_REQUEST = 'The provided data is not valid'
