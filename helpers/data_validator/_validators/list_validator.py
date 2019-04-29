@@ -1,13 +1,15 @@
 def validate_list(schema, value, ctx):
     if type(value) is not list:
         ctx.error(
-            error_type='type',
-            message='The value should be a list'
+            error_code='type',
+            message='The value should be a list',
+            schema=schema,
+            value=value
         )
         return
 
-    # TODO: min_length
-    # TODO: max_length
+    # TODO: min_items
+    # TODO: max_items
 
     item_schema = schema['item_schema']
 

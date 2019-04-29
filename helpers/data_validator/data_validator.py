@@ -5,10 +5,10 @@ from ._validators.email_validator import validate_email
 
 
 class DataValidationError(Exception):
-    def __init__(self, error_path, error_type, message, extra={}):
+    def __init__(self, error_path, error_code, message, extra={}):
         self.error_path = error_path
         self.message = message
-        self.error_type = error_type
+        self.error_code = error_code
         self.extra = extra
 
 
@@ -36,12 +36,15 @@ class DataValidator:
             ctx=self
         )
 
-    def error(self, error_type, message, extra={}):
+    def error(self, error_code, message, schema, value):
         raise DataValidationError(
-            error_path='>'.join(self.path),
-            error_type=error_type,
-            message=message,
-            extra=extra
+            error_path='.'.join(self.path),
+            error_code=error_code,
+            message=schema['error_message'] if 'error_message' in schema else message,
+            extra={
+                'schema': schema,
+                'value': value
+            }
         )
 
     def add_to_path(self, path):

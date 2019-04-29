@@ -9,6 +9,8 @@ def validate_email(schema, value, ctx):
 
     if not email.is_valid():
         ctx.error(
-            error_type='email',
-            message='The value should be a valid email'
+            error_code='email',
+            message='The value should be a valid email',
+            schema=schema,
+            value=value
         )

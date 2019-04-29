@@ -1,8 +1,10 @@
 def validate_dict(schema, value, ctx):
     if type(value) is not dict:
         ctx.error(
-            error_type='type',
-            message='The value should be a dict'
+            error_code='type',
+            message='The value should be a dict',
+            schema=schema,
+            value=value
         )
         return
 
